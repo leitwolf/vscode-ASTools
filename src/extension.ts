@@ -64,7 +64,12 @@ class Completions implements CompletionItemProvider {
                     let left = nextLine.indexOf("(");
                     let right = nextLine.indexOf(")");
                     let paramsStr = nextLine.substring(left + 1, right);
-                    let params = paramsStr.split(",");
+                    paramsStr = paramsStr.replace(/\s+/g, "");
+                    let params = [];
+                    if (paramsStr != "") {
+                        params = paramsStr.split(",");
+                    }
+                    // console.log(params.length);
 
                     // 返回值
                     let reValue = nextLine.substr(right + 1);

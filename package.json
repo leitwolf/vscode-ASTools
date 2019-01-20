@@ -1,0 +1,51 @@
+{
+    "name": "vscode-astools",
+    "displayName": "Actionscript Tools",
+    "description": "Actionscript Formatting, DocBlocking.",
+    "version": "0.0.1",
+    "publisher": "lonewolf",
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/leitwolf/vscode-ASTools.git"
+    },
+    "bugs": {
+        "url": "https://github.com/leitwolf/vscode-ASTools/issues"
+    },
+    "homepage": "https://github.com/leitwolf/vscode-ASTools/blob/master/README.md",
+    "keywords": [
+        "actionscript",
+        "as3",
+        "format"
+    ],
+    "icon": "icon.png",
+    "categories": [
+        "Formatters",
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:nextgenas"
+    ],
+    "main": "./out/extension",
+    "extensionDependencies": [
+        "bowlerhatllc.vscode-nextgenas"
+    ],
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "dependencies": {
+        "vscode-uri": "^1.0.6"
+    },
+    "devDependencies": {
+        "@types/mocha": "^5.2.5",
+        "@types/node": "^10.7.1",
+        "mocha": "^5.2.0",
+        "typescript": "^3.0.1",
+        "vscode": "^1.1.21"
+    }
+}

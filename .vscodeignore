@@ -10,3 +10,4 @@ vsc-extension-quickstart.md
 yarn.lock
 types/**
 files/*.as
+*.vsix

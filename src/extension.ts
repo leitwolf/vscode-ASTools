@@ -2,7 +2,7 @@
 import { exec } from "child_process";
 import { readFileSync, writeFileSync } from "fs";
 import * as path from 'path';
-import { DocumentFormattingEditProvider, ExtensionContext, languages, Range, TextDocument, TextEdit, CompletionItemProvider, Position, CancellationToken, ProviderResult, CompletionItem, window, SnippetString } from "vscode";
+import { DocumentFormattingEditProvider, ExtensionContext, languages, Range, TextDocument, TextEdit, CompletionItemProvider, Position, CancellationToken, ProviderResult, CompletionItem, window, SnippetString, CompletionItemKind } from "vscode";
 
 /**
  * format code
@@ -115,12 +115,28 @@ class Completions implements CompletionItemProvider {
             // console.log("match /**",prevBlanks.length);
         }
         else if (patt2.test(prevStr)) {
-            result.push(new CompletionItem("param"));
-            result.push(new CompletionItem("return"));
-            result.push(new CompletionItem("author"));
+            result.push(this.getCompletionItem("author"));
+            result.push(this.getCompletionItem("copy"));
+            result.push(this.getCompletionItem("default"));
+            result.push(this.getCompletionItem("eventType"));
+            result.push(this.getCompletionItem("example"));
+            result.push(this.getCompletionItem("exampleText"));
+            result.push(this.getCompletionItem("inheritDoc"));
+            result.push(this.getCompletionItem("internal"));
+            result.push(this.getCompletionItem("param"));
+            result.push(this.getCompletionItem("private"));
+            result.push(this.getCompletionItem("return"));
+            result.push(this.getCompletionItem("see"));
+            result.push(this.getCompletionItem("throws"));
         }
 
         return result;
+    }
+
+    private getCompletionItem(label: string): CompletionItem {
+        let item = new CompletionItem(label, CompletionItemKind.Text);
+        item.insertText = new SnippetString(label + " $0");
+        return item;
     }
 }
 

@@ -2,7 +2,7 @@
     "name": "vscode-astools",
     "displayName": "Actionscript Tools",
     "description": "Actionscript Formatting, DocBlocking.",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "publisher": "lonewolf",
     "engines": {
         "vscode": "^1.25.0"

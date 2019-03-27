@@ -15,7 +15,7 @@ class AsDocumentFormatter implements DocumentFormattingEditProvider {
         writeFileSync(inputFile, inputData);
 
         let outFile = filesPath + "b.as";
-        let jarFile = filesPath + "ASPrettyPrinter-1.0.jar";
+        let jarFile = filesPath + "ASPrettyPrinter-1.1.jar";
         let javaPath = "java";
         let command = javaPath + " -jar " + jarFile + " -input " + inputFile + " -output " + outFile;
         return new Promise((resolve, reject) => {
@@ -28,7 +28,7 @@ class AsDocumentFormatter implements DocumentFormattingEditProvider {
                     resolve([TextEdit.replace(range, outData)]);
                 }
                 else {
-                    reject("error");
+                    reject("error: " + stderr);
                 }
             });
         })

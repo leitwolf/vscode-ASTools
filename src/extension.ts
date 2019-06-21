@@ -141,8 +141,8 @@ class Completions implements CompletionItemProvider {
 }
 
 export function activate(context: ExtensionContext) {
-    context.subscriptions.push(languages.registerDocumentFormattingEditProvider("nextgenas", new AsDocumentFormatter()));
-    context.subscriptions.push(languages.registerCompletionItemProvider("nextgenas", new Completions(), "*", "@"));
+    context.subscriptions.push(languages.registerDocumentFormattingEditProvider("actionscript", new AsDocumentFormatter()));
+    context.subscriptions.push(languages.registerCompletionItemProvider("actionscript", new Completions(), "*", "@"));
 }
 
 export function deactivate(): Thenable<void> {

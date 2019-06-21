@@ -1,3 +1,6 @@
+# [0.0.5] - 2019-06-21
+- fixed bug - ActionScript & MXML Changed Visual Studio Code's language identifier for ActionScript from "nextgenas" to "actionscript" at version v0.20.0.
+
 # [0.0.4] - 2019-03-27
 - java runtime: 1.8
 - setBlankLinesBeforeControlStatement(0)

@@ -2,7 +2,7 @@
     "name": "vscode-astools",
     "displayName": "Actionscript Tools",
     "description": "Actionscript Formatting, DocBlocking.",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "publisher": "lonewolf",
     "engines": {
         "vscode": "^1.25.0"
@@ -25,6 +25,23 @@
         "Formatters",
         "Other"
     ],
+    "contributes": {
+        "configuration":{
+            "title": "ASTools",
+            "properties": {
+                "astools.braceStyle":{
+                    "type":"string",
+                    "default":"Sun",
+                    "enum": ["Sun","Adobe"],
+                    "enumDescriptions": [
+                        "{ on the same line",
+                        "{ on the next line"
+                    ],
+                    "description": "Set format style for brace."
+                }
+            }
+        }
+    },
     "activationEvents": [
         "onLanguage:actionscript"
     ],

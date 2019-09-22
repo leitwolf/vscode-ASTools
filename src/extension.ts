@@ -2,7 +2,7 @@
 import { exec } from "child_process";
 import { readFileSync, writeFileSync } from "fs";
 import * as path from 'path';
-import { DocumentFormattingEditProvider, ExtensionContext, languages, Range, TextDocument, TextEdit, CompletionItemProvider, Position, CancellationToken, ProviderResult, CompletionItem, window, SnippetString, CompletionItemKind } from "vscode";
+import { DocumentFormattingEditProvider, ExtensionContext, languages, Range, TextDocument, TextEdit, CompletionItemProvider, Position, CancellationToken, ProviderResult, CompletionItem, window, SnippetString, CompletionItemKind, workspace } from "vscode";
 
 /**
  * format code
@@ -10,14 +10,16 @@ import { DocumentFormattingEditProvider, ExtensionContext, languages, Range, Tex
 class AsDocumentFormatter implements DocumentFormattingEditProvider {
     public provideDocumentFormattingEdits(document: TextDocument): ProviderResult<TextEdit[]> {
         let filesPath = path.join(__dirname, "../files/");
+        let braceStyle = workspace.getConfiguration("astools").get("braceStyle");
+        console.log("braceStyle:", braceStyle);
         let inputFile = filesPath + "a.as";
         let inputData = document.getText();
         writeFileSync(inputFile, inputData);
 
         let outFile = filesPath + "b.as";
-        let jarFile = filesPath + "ASPrettyPrinter-1.1.jar";
+        let jarFile = filesPath + "ASPrettyPrinter-1.2.jar";
         let javaPath = "java";
-        let command = javaPath + " -jar " + jarFile + " -input " + inputFile + " -output " + outFile;
+        let command = javaPath + " -jar " + jarFile + " -braceStyle " + braceStyle + " -input " + inputFile + " -output " + outFile;
         return new Promise((resolve, reject) => {
             exec(command, (error: Error, stdout: string, stderr: string) => {
                 if (!stderr) {

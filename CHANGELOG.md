@@ -1,3 +1,6 @@
+# [0.0.6] - 2019-09-22
+- add format style for brace.
+
 # [0.0.5] - 2019-06-21
 - fixed bug - ActionScript & MXML Changed Visual Studio Code's language identifier for ActionScript from "nextgenas" to "actionscript" at version v0.20.0.
 

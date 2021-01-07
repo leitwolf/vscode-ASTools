@@ -11,3 +11,4 @@ yarn.lock
 types/**
 files/*.as
 *.vsix
+.history/**

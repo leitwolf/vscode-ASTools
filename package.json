@@ -2,7 +2,7 @@
     "name": "vscode-astools",
     "displayName": "Actionscript Tools",
     "description": "Actionscript Formatting, DocBlocking.",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "lonewolf",
     "engines": {
         "vscode": "^1.25.0"
@@ -26,13 +26,16 @@
         "Other"
     ],
     "contributes": {
-        "configuration":{
+        "configuration": {
             "title": "ASTools",
             "properties": {
-                "astools.braceStyle":{
-                    "type":"string",
-                    "default":"Sun",
-                    "enum": ["Sun","Adobe"],
+                "astools.braceStyle": {
+                    "type": "string",
+                    "default": "Sun",
+                    "enum": [
+                        "Sun",
+                        "Adobe"
+                    ],
                     "enumDescriptions": [
                         "{ on the same line",
                         "{ on the next line"

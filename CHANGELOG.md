@@ -1,3 +1,6 @@
+# [0.0.7] - 2021-01-07
+- bug fix for multi file format at one time, e.g. format on save.
+
 # [0.0.6] - 2019-09-22
 - add format style for brace.
 

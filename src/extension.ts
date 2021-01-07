@@ -1,8 +1,16 @@
 'use strict';
 import { exec } from "child_process";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, unlinkSync, writeFileSync } from "fs";
 import * as path from 'path';
-import { DocumentFormattingEditProvider, ExtensionContext, languages, Range, TextDocument, TextEdit, CompletionItemProvider, Position, CancellationToken, ProviderResult, CompletionItem, window, SnippetString, CompletionItemKind, workspace } from "vscode";
+import { CancellationToken, CompletionItem, CompletionItemKind, CompletionItemProvider, DocumentFormattingEditProvider, ExtensionContext, languages, Position, ProviderResult, Range, SnippetString, TextDocument, TextEdit, window, workspace } from "vscode";
+
+let count_sn = 0;
+function genRandomName(): string {
+    count_sn++;
+    let ran = Math.random() + count_sn;
+    let str = (ran + "").replace(".", "_");
+    return str;
+}
 
 /**
  * format code
@@ -12,11 +20,11 @@ class AsDocumentFormatter implements DocumentFormattingEditProvider {
         let filesPath = path.join(__dirname, "../files/");
         let braceStyle = workspace.getConfiguration("astools").get("braceStyle");
         console.log("braceStyle:", braceStyle);
-        let inputFile = filesPath + "a.as";
+        let inputFile = filesPath + "input_" + genRandomName() + ".as";
         let inputData = document.getText();
         writeFileSync(inputFile, inputData);
 
-        let outFile = filesPath + "b.as";
+        let outFile = filesPath + "output_" + genRandomName() + ".as";
         let jarFile = filesPath + "ASPrettyPrinter-1.2.jar";
         let javaPath = "java";
         let command = javaPath + " -jar " + jarFile + " -braceStyle " + braceStyle + " -input " + inputFile + " -output " + outFile;
@@ -27,9 +35,13 @@ class AsDocumentFormatter implements DocumentFormattingEditProvider {
                     let endLine = document.lineAt(document.lineCount - 1);
                     let range = new Range(firstLine.range.start, endLine.range.end);
                     let outData = readFileSync(outFile).toString();
+                    unlinkSync(inputFile);
+                    unlinkSync(outFile);
                     resolve([TextEdit.replace(range, outData)]);
                 }
                 else {
+                    unlinkSync(inputFile);
+                    unlinkSync(outFile);
                     reject("error: " + stderr);
                 }
             });
